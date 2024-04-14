@@ -66,6 +66,10 @@ def split_pgn(infile: Path):
         while True:
             try:
                 pgn = '\n'.join(emit_single_game(f))
+                # Ignore empty / forfeited games by checking
+                # ECO code presence
+                if not "[ECO " in pgn:
+                    continue
                 if any(s.lower() in pgn.lower() for s in sites):
                     internet.append(pgn)
                 else:
