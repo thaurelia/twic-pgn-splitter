@@ -67,7 +67,7 @@ def split_pgn(infile: Path):
             try:
                 pgn = '\n'.join(emit_single_game(f))
                 # Ignore empty / forfeited games by checking
-                # ECO code presence
+                # ECO code presence; also ignores Chess960 games
                 if not "[ECO " in pgn:
                     continue
                 if any(s.lower() in pgn.lower() for s in sites):
